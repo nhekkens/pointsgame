@@ -1,0 +1,25 @@
+<p>Recent Aram Games</p>
+
+<ul>
+  <li ng-repeat="game in games | filter:'ARAM'">
+    <span><strong>GameMode:</strong> {{ game.gameMode }}</span>
+    <span><strong>Date:</strong> {{ game.createDate | date : longDate }}</span>
+    <span><strong>Kills:</strong> {{ game.stats.championsKilled }}</span>
+    <span><strong>Deaths:</strong> {{ game.stats.numDeaths }}</span>
+    <span><strong>Assists:</strong> {{ game.stats.assists }}</span>
+  </li>
+</ul>
+
+
+<!--
+<p>Recent Games</p>
+
+<ul>
+  <li ng-repeat="game in games">
+    <p><strong>GameMode:</strong> {{ game.gameMode }}</p>
+    <p><strong>Date:</strong> {{ game.createDate | date : longDate }}</p>
+    <p><strong>Kills:</strong> {{ game.stats.championsKilled }}</p>
+    <p><strong>Deaths:</strong> {{ game.stats.numDeaths }}</p>
+    <p><strong>Assists:</strong> {{ game.stats.assists }}</p>
+  </li>
+</ul> -->

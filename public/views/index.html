@@ -1,0 +1,10 @@
+<h2>Players</h2>
+
+Filter:<input type="text" ng-model="filter.name"/>
+
+<br />
+<br />
+
+<ul>
+  <li ng-repeat="player in players | filter:filter.name"><a href="/{{ player.ID }}">{{ player.name }}</a></li>
+</ul>
