@@ -1,28 +1,47 @@
 var mongoosedb = require('./mydb');
 
+var userGames = new  mongoosedb.Schema({
+
+  game_id : { type:String, unique: true },
+
+  kills : Number,
+
+  deaths : Number,
+
+  assists : Number,
+
+  minions : Number,
+
+  gold : Number,
+
+});
+
+
 var userSchema = new mongoosedb.Schema({
 
-  user_id :  Number,
+  user_id          : Number,
 
-  user_name:  String,
+  user_name        : String,
 
-  total_wins : Number,
+  total_wins       : Number,
 
-  total_loses : Number,
+  total_loses      : Number,
 
-  wins_ratio : Number,
+  wins_ratio       : Number,
 
-  average_points : Number,
+  average_points   : Number,
 
-  total_games : Number,
+  total_games      : Number,
 
-  average_kills : Number,
+  average_kills    : Number,
 
-  average_deaths : Number,
+  average_deaths   : Number,
 
-  average_assists : Number,
+  average_assists  : Number,
 
-  champ_coin : Number
+  champ_coin       : Number,
+
+  games            : [userGames]
 
 });
 
