@@ -2,7 +2,7 @@ var mongoosedb = require('./mydb');
 
 var userGames = new  mongoosedb.Schema({
 
-  game_id : { type:String, unique: true },
+  game_id : Number,
 
   kills : Number,
 
@@ -14,14 +14,27 @@ var userGames = new  mongoosedb.Schema({
 
   gold : Number,
 
+  multi_kill : Number,
+
+  team : Number,
+
+  win : Boolean,
+
+  game_mode : String,
+
+  game_type : String,
+
+  sub_game_type : String
+
+
 });
 
 
 var userSchema = new mongoosedb.Schema({
 
-  user_id          : Number,
+  user_id          :  { type:Number, unique: true },
 
-  user_name        : String,
+  user_name        :  { type:String, unique: true },
 
   total_wins       : Number,
 
@@ -46,7 +59,7 @@ var userSchema = new mongoosedb.Schema({
 });
 
 // Compile a 'User' model using the userSchema as the structure.
-var User = mongoosedb.model('User', userSchema);
+var User = mongoosedb.model('User', userSchema, null, false );
 
 // export to server js
 module.exports = User;

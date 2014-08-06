@@ -133,104 +133,74 @@ app.delete('/api/games/:game_id', function(req, res) {
 
 // GAMES MONGOOSE STUFF =================STOP===================
 
+// getGames(); // Run get games and update user game data.
 
-// LOL API GET USER DATA
+// ADMIN USER CONTROL
 
+var user = {
 
-    // https://euw.api.pvp.net/api/lol/euw/v1.3/game/by-summoner/28187872/recent?api_key=
+	user_id          :  25231674,
 
+	user_name        :  'Furnus',
 
+	total_wins       : 0,
 
-var getRecent = function( user_id ) {
+	total_loses      : 0,
 
-  var lol_apiKey = '43b8a50b-cdba-4dfb-b9af-ad4d0c10aa26';
+	wins_ratio       : 0,
 
-  https.get('https://euw.api.pvp.net/api/lol/euw/v1.3/game/by-summoner/' + user_id + '/recent?api_key=' + lol_apiKey, function(res) {
+	average_points   : 0,
 
-    console.log("Got response: " + res.statusCode);
+	total_games      : 0,
 
-    console.log("res: " + res);
+	average_kills    : 0,
 
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
-  });
+	average_deaths   : 0,
 
-}
+	average_assists  : 0,
 
+	champ_coin       : 0,
 
-// getRecent(28187872);
+	games : [
 
+	{ game_id: 1499737512,
+  kills: 5,
+  deaths: 5,
+  assists: 2,
+  minions: 116,
+  gold: 7778,
+  multi_kill: 1,
+  team: 100,
+  win: false,
+  game_mode: 'CLASSIC',
+  game_type: 'MATCHED_GAME',
+  sub_game_type: 'RANKED_SOLO_5x5' }
 
-getGames();
-
-
-
-
-var slapy = {
-
-  user_id : 28187872,
-
-  user_name: 'Inev',
-
-  total_wins : 0,
-
-  total_loses : 0,
-
-  wins_ratio : 0,
-
-  average_points : 0,
-
-  total_games : 0,
-
-  average_kills : 0,
-
-  average_deaths : 0,
-
-  average_assists : 0,
-
-  champ_coin : 0
-
+	]
 };
-
-
 
 // { name:'Slapy', ID:'28040465' },
 // { name:'Lee', ID:'19323636' },
 // { name:'Inev', ID:'28187872' },
 // { name:'Jaka', ID:'28138070' },
+// Grim  34489178
+//  'Furnus',25231674,
 
 
 
-// User.remove({ user_id: 28187872 }, function (err) {});
 
-// User.create(slapy, function(err, User) {
+// Remove user
+// User.remove({ user_id: 25231674 }, function (err) {});
+
+
+// Create user
+// User.create(user, function(err, User) {
 //   if (err)
 //     console.log('user exsists' + err)
 // });
 
-// User.find(function(err, User) {
-//   console.log(User);
-//
-//
-// });
 
-
-
-
-
-
-
-// Get all game data ( for loop for each user then retrieve recent games from lol api.)
-
-// get latest game in games then check the data for the game id. from there we will continue
-
-// Build the latest game , getting all data for each player and making a game table.
-
-// Insert the latest game into the Mongo database.
-
-// after inserting new game into mongo, add thsi new data to each user account. updating there averages. and blal bla bla.
-
-// do this every hour
-
-
-// Set up Mongoose table schemas for user and game data.
+// Output the users
+User.find(function(err, User) {
+  console.log(User);
+});
