@@ -24,8 +24,9 @@ var userGames = new  mongoosedb.Schema({
 
   game_type : String,
 
-  sub_game_type : String
+  sub_game_type : String,
 
+  game_date : Number
 
 });
 
@@ -35,24 +36,6 @@ var userSchema = new mongoosedb.Schema({
   user_id          :  { type:Number, unique: true },
 
   user_name        :  { type:String, unique: true },
-
-  total_wins       : Number,
-
-  total_loses      : Number,
-
-  wins_ratio       : Number,
-
-  average_points   : Number,
-
-  total_games      : Number,
-
-  average_kills    : Number,
-
-  average_deaths   : Number,
-
-  average_assists  : Number,
-
-  champ_coin       : Number,
 
   games            : [userGames]
 

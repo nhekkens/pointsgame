@@ -1,13 +1,12 @@
 var express  = require('express');
 var app      = express(); 								// create our app w/ express
 var https     = require("https");
-var Game     = require("./game");
 var User     = require("./user");
 
-// START
+// START (1)
 var getGames = function() {
 
-  // 3. Get user data and add it to player games.
+  // (3). Get user data and add it to player games.
   function getRecent( user_id, user_name ) {
 
     var lol_apiKey = '43b8a50b-cdba-4dfb-b9af-ad4d0c10aa26';
@@ -38,7 +37,7 @@ var getGames = function() {
 
   }
 
-  // 3. Get user data and add it to player games.
+  // (4). Get user data and add it to player games.
   function makeData( playerGames, user_id, user_name ) {
 
     // console.log( 'Making data for user: ' + user_name );
@@ -73,50 +72,42 @@ var getGames = function() {
 
         game_type : playerGames.games[i].gameType,
 
-        sub_game_type : playerGames.games[i].subType
+        sub_game_type : playerGames.games[i].subType,
+
+        game_date : playerGames.games[i].createDate
 
       }
 
-      // console.log(newPlayerGame, user_name);
-
-      User.find({ user_id: user_id, games: { $elemMatch: { game_id: playerGames.games[i].gameId } } }, function(err, myvar) {
-
-        // console.log(err, myvar);
-
-        if ( myvar.lenght > 0 ) {
-          console.log( 'Skipping: ' + playerGames.games[i].gameId + ' || Reason: Duplication || ' + 'User: ' + user_name );
-          return
-        }
-
-
-
-        console.log( 'Adding: ' + playerGames.games[i].gameId + ' || Reason: New Data || ' + 'User: ' + user_name );
-        addGame( user_id, newPlayerGame );
-
-      } );
-
-
-
-      // // find user and game id in db
-      // User.find({ user_id: user_id },{ games: { $elemMatch: { game_id: playerGames.games[i].gameId } } } ).exec(function (err, user) {
-      //
-      //   // If user exsists skip this game
-      //   if ( user ) {
-      //     console.log( 'Skipping: ' + playerGames.games[i].gameId + ' || Reason: Duplication || ' + 'User: ' + user_name );
-      //     console.log( 'User OBJECT : ' + user.games );
-      //     return
-      //   }
-      //
-      //
-      //   // if user failed so adding newplayergame to DB
-      //   console.log( 'Adding: ' + playerGames.games[i].gameId + ' || Reason: New Data || ' + 'User: ' + user_name );
-      //   addGame( user_id, newPlayerGame );
-      // })
+      // send data to be validated.
+      checkGameValid( newPlayerGame, user_name, user_id );
     }
   }
 
+  // (5) Validate agaist exsisting entries.
+  function checkGameValid( newPlayerGame, user_name, user_id ) {
 
-  // add game to User
+    // Log data
+    console.log(newPlayerGame.game_id, user_name, user_id);
+
+    // Find User and check if game id exsists
+    User.find({ user_id: user_id, games: { $elemMatch: { game_id: newPlayerGame.game_id } } }, function(err, myvar) {
+
+      // console.log('Err: ' + err + ' myvar: ' + myvar + ' GameID: ' + newPlayerGame.game_id + ' UserID: ' + user_id);
+
+      if ( myvar.length > 0 ) {
+        console.log( 'Skipping: ' + newPlayerGame.game_id + ' || Reason: Duplication || ' + 'User: ' + user_name );
+      }
+      else {
+        console.log( 'Adding: ' + newPlayerGame.game_id + ' || Reason: New Data || ' + 'User: ' + user_name );
+        addGame( user_id, newPlayerGame );
+      }
+
+    });
+
+  }
+
+
+  // (6) add game to User
   function addGame( user_id, newPlayerGame ) {
 
     User.update({ user_id : user_id }, {$push: { games : newPlayerGame }}, function(err, User) {
@@ -127,7 +118,7 @@ var getGames = function() {
     });
   }
 
-  // 2. get users and send each user_id to getRecent.
+  // (2). get users and send each user_id to getRecent.
   User.find(function(err, User) {
     // console.log(User);
 
