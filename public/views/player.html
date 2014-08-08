@@ -1,25 +1,71 @@
-<p>Recent Aram Games</p>
+<div id="user" class="viewContainer">
+  <a href="/">Back</a>
 
-<ul>
-  <li ng-repeat="game in games | filter:'ARAM'">
-    <span><strong>GameMode:</strong> {{ game.gameMode }}</span>
-    <span><strong>Date:</strong> {{ game.createDate | date : longDate }}</span>
-    <span><strong>Kills:</strong> {{ game.stats.championsKilled }}</span>
-    <span><strong>Deaths:</strong> {{ game.stats.numDeaths }}</span>
-    <span><strong>Assists:</strong> {{ game.stats.assists }}</span>
-  </li>
-</ul>
+  <h1>Stats for {{name}}</h1>
 
 
-<!--
-<p>Recent Games</p>
+  <h2>ARAM</h2>
+  <ul>
+    <li class="game {{ game.win }}" ng-repeat="game in games | filter:'ARAM' | orderBy: '-game_date'">
 
-<ul>
-  <li ng-repeat="game in games">
-    <p><strong>GameMode:</strong> {{ game.gameMode }}</p>
-    <p><strong>Date:</strong> {{ game.createDate | date : longDate }}</p>
-    <p><strong>Kills:</strong> {{ game.stats.championsKilled }}</p>
-    <p><strong>Deaths:</strong> {{ game.stats.numDeaths }}</p>
-    <p><strong>Assists:</strong> {{ game.stats.assists }}</p>
-  </li>
-</ul> -->
+      <div><strong>Date:</strong> {{ game.game_date | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+
+      <div><strong>Kills:</strong> {{ game.kills }}</div>
+
+      <div><strong>Deaths:</strong> {{ game.deaths }}</div>
+
+      <div><strong>Assists:</strong> {{ game.assists }}</div>
+
+      <div><strong>Minion Kills:</strong> {{ game.minions }}</div>
+
+      <div><strong>Win:</strong> {{ game.win }}</div>
+
+      <div><strong>Gold:</strong> {{ game.gold }}</div>
+
+      <div><strong>Points:</strong> {{ game.gold }}</div>
+
+    </li>
+  </ul>
+
+  <h2>SUMMONERS RIFT</h2>
+  <ul>
+    <li ng-repeat="game in games | filter:'CLASSIC' | orderBy: '-game_date'">
+
+      <div><strong>Date:</strong> {{ game.game_date | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+
+      <div><strong>Kills:</strong> {{ game.kills }}</div>
+
+      <div><strong>Deaths:</strong> {{ game.deaths }}</div>
+
+      <div><strong>Assists:</strong> {{ game.assists }}</div>
+
+      <div><strong>Minion Kills:</strong> {{ game.minions }}</div>
+
+      <div><strong>Win:</strong> {{ game.win }}</div>
+
+      <div><strong>Gold:</strong> {{ game.gold }}</div>
+
+    </li>
+  </ul>
+
+  <h2>DOMINION</h2>
+  <ul>
+    <li ng-repeat="game in games | filter:'ODIN' | orderBy: '-game_date'">
+
+      <div><strong>Date:</strong> {{ game.game_date | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+
+      <div><strong>Kills:</strong> {{ game.kills }}</div>
+
+      <div><strong>Deaths:</strong> {{ game.deaths }}</div>
+
+      <div><strong>Assists:</strong> {{ game.assists }}</div>
+
+      <div><strong>Minion Kills:</strong> {{ game.minions }}</div>
+
+      <div><strong>Win:</strong> {{ game.win }}</div>
+
+      <div><strong>Gold:</strong> {{ game.gold }}</div>
+
+    </li>
+  </ul>
+</div>

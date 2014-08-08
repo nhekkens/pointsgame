@@ -1,0 +1,9 @@
+div#user .game {
+  width: 80%;
+  height: 100px; }
+  div#user .game.false {
+    background-color: red;
+    color: white; }
+  div#user .game.true {
+    background-color: green;
+    color: white; }

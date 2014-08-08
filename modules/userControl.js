@@ -38,6 +38,13 @@ var Furnus = {
   games : []
 };
 
+var Terrance = {
+  user_id          :  24480384,
+  user_name        :  'Terrance',
+  games : []
+};
+
+
 // Remove user =================================================================
 // User.remove({ user_id: 28040465 }, function (err) {
 //   console.log('Slapy Removed.');
@@ -57,6 +64,9 @@ var Furnus = {
 // User.remove({ user_id: 25231674 }, function (err) {
 //   console.log('Furnus Removed.');
 // }); //Furnus
+// User.remove({ user_id: 24480384 }, function (err) {
+//   console.log('Terrance Removed.');
+// }); //Terrance
 
 // Create user =================================================================
 // User.create(Slapy, function(err, User) {
@@ -76,6 +86,9 @@ var Furnus = {
 // });
 // User.create(Furnus, function(err, User) {
 //     console.log('Furnus Created');
+// });
+// User.create(Terrance, function(err, User) {
+//     console.log('Terrance Created');
 // });
 
 // Output the users=============================================================

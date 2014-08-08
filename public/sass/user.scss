@@ -1,0 +1,17 @@
+div#user {
+
+  .game {
+    width: 80%;
+    height: 100px;
+
+    &.false {
+      background-color: red;
+      color: white;
+    }
+
+    &.true {
+      background-color: green;
+      color: white;
+    }
+  }
+}

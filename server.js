@@ -14,20 +14,11 @@ app.configure(function() {
   app.engine('html', require('ejs').renderFile);
 });
 
-// app.get('*', function(req, res) {
-//
-//     app.render('/index', function(err, html){
-//     });
-//
-// });
-
 // listen (start app with node server.js) ======================================
-app.listen(8080);
-console.log("App listening on port 8080");
+app.listen(1337);
+console.log("App listening on port 1337");
 
-
-
-// handle querys CRUD
+// GET users
 app.get('/api/users', function(req, res) {
 
 	User.find(function(err, users) {
@@ -39,45 +30,20 @@ app.get('/api/users', function(req, res) {
 	});
 });
 
-// create user and send back all users after creation
-app.post('/api/users', function(req, res) {
+// GET user ID
+app.get('/api/users/:user_id', function(req, res) {
 
-	// create a user, information comes from AJAX request from Angular
-	User.create({
-		text : req.body.text,
-		done : false
-	}, function(err, user) {
+	User.find({ user_id: req.params.user_id }, function(err, users) {
+
+		console.log('Request for user: ' + req.params.user_id);
+
 		if (err)
-			res.send(err);
+			res.send(err)
 
-		// get and return all the users after you create another
-		User.find(function(err, users) {
-			if (err)
-				res.send(err)
-			res.json(users);
-		});
-	});
+		res.json(users);
+
+	})
 
 });
-
-// delete a user
-app.delete('/api/users/:user_id', function(req, res) {
-	User.remove({
-		_id : req.params.user_id
-	}, function(err, user) {
-		if (err)
-			res.send(err);
-
-		// get and return all the users after you create another
-		User.find(function(err, users) {
-			if (err)
-				res.send(err)
-			res.json(users);
-		});
-	});
-});
-// USERS MONGOOSE STUFF =================STOP===================
-
-
 
 // getGames(); // Run get games and update user game data.
