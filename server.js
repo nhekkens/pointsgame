@@ -15,7 +15,7 @@ app.configure(function() {
 });
 
 // listen (start app with node server.js) ======================================
-app.listen(80);
+app.listen(1337);
 console.log("App listening on port 1337");
 
 
