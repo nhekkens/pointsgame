@@ -8,7 +8,7 @@ var User     = require("./modules/user");
 var getGames     = require("./modules/getGames");
 
 app.configure(function() {
-	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
+	app.use(express.static(__dirname + '/public')); 		
 	app.use(express.logger('dev')); 						// log every request to the console
 	app.use(express.bodyParser()); 							// pull information from html in POST
   // app.engine('html', require('ejs').renderFile);
@@ -47,7 +47,7 @@ app.get('/api/users/:user_id', function(req, res) {
 
 });
 
-// Redirect if the page is refreshed.
+// Redirect everything other than above to index (angualr knows the route)
 app.get('*', function (req, res) {
 	// res.render('index');
 	res.sendfile( __dirname + '/public/index.html');
