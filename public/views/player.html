@@ -16,7 +16,7 @@
 
   <div class="isotope">
 
-      <div class="game {{ game.win }} col-md-4 col-sm-3 col-xs-12" ng-repeat="game in games | orderBy: '-game_date'">
+      <div class="game {{ game.win }} champ-id-{{ game.champion }} col-md-4 col-sm-3 col-xs-12" ng-repeat="game in games | orderBy: '-game_date'">
 
         <div class="win"></div>
 
@@ -27,10 +27,11 @@
           <p>Kills: {{ game.kills }}</p>
           <p>Deaths: {{ game.deaths }}</p>
           <p>Assists: {{ game.assists }}</p>
-          <p>Champion: {{ game.champion }}</p>
-          <p>Points: {{ game.points }}</p>
+          <p class="points">Points: {{ game.points }}</p>
           <p>Highest Spree: {{ game.spree }}</p>
           <p>Game Mode: {{ game.game_mode }}</p>
+          <p>Game ID: {{ game.game_id }}</p>
+          <p>Champion: <img src="http://lkimg.zamimg.com/shared/riot/images/champions/{{ game.champion }}.png"></p>
 
         </div>
 

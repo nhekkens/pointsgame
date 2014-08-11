@@ -44,6 +44,11 @@ var Terrance = {
   games : []
 };
 
+var Cortex = {
+  user_id          :  28375567,
+  user_name        :  'Cortex',
+  games : []
+};
 
 // Remove user =================================================================
 // User.remove({ user_id: 28040465 }, function (err) {
@@ -67,6 +72,9 @@ var Terrance = {
 // User.remove({ user_id: 24480384 }, function (err) {
 //   console.log('Terrance Removed.');
 // }); //Terrance
+// User.remove({ user_id: 28375567 }, function (err) {
+//   console.log('Terrance Removed.');
+// }); //Cortex
 
 // Create user =================================================================
 // User.create(Slapy, function(err, User) {
@@ -90,6 +98,10 @@ var Terrance = {
 // User.create(Terrance, function(err, User) {
 //     console.log('Terrance Created');
 // });
+// User.create(Cortex, function(err, User) {
+//     console.log('Cortex Created');
+// });
+
 
 // Output the users=============================================================
 // User.find(function(err, User) {
