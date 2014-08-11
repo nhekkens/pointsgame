@@ -26,7 +26,13 @@ var userGames = new  mongoosedb.Schema({
 
   sub_game_type : String,
 
-  game_date : Number
+  game_date : Number,
+
+  points : Number,
+
+  champion : Number,
+
+  spree : Number
 
 });
 

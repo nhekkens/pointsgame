@@ -74,7 +74,13 @@ var getGames = function() {
 
         sub_game_type : playerGames.games[i].subType,
 
-        game_date : playerGames.games[i].createDate
+        game_date : playerGames.games[i].createDate,
+
+        points : ( ( playerGames.games[i].stats.championsKilled * 2 ) + playerGames.games[i].stats.assists ) - ( playerGames.games[i].stats.numDeaths * 3),
+
+        champion : playerGames.games[i].championId,
+
+        spree : playerGames.games[i].stats.largestMultiKill
 
       }
 

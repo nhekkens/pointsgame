@@ -11,12 +11,13 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
 	app.use(express.logger('dev')); 						// log every request to the console
 	app.use(express.bodyParser()); 							// pull information from html in POST
-  app.engine('html', require('ejs').renderFile);
+  // app.engine('html', require('ejs').renderFile);
 });
 
 // listen (start app with node server.js) ======================================
-app.listen(1337);
+app.listen(80);
 console.log("App listening on port 1337");
+
 
 // GET users
 app.get('/api/users', function(req, res) {
@@ -46,14 +47,21 @@ app.get('/api/users/:user_id', function(req, res) {
 
 });
 
-getGames(); // Run get games and update user game data.  
+// Redirect if the page is refreshed.
+app.get('*', function (req, res) {
+	// res.render('index');
+	res.sendfile( __dirname + '/public/index.html');
+});
+ec2
+
+// getGames(); // Run get games and update user game data.
 
 // Timeout to call lol api
-var minutes = 15, the_interval = minutes * 60 * 1000;
-setInterval(function() {
-
-  console.log('Retrieving data from LOL api. This will repeat every ' + minutes + 'min.');
-  
-  getGames(); // Run get games and update user game data.  
-
-}, the_interval);
+// var minutes = 15, the_interval = minutes * 60 * 1000;
+// setInterval(function() {
+//
+//   console.log('Retrieving data from LOL api. This will repeat every ' + minutes + 'min.');
+//
+//   getGames(); // Run get games and update user game data.
+//
+// }, the_interval);
