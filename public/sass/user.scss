@@ -1,17 +1,38 @@
 div#user {
 
   .game {
-    width: 80%;
-    height: 100px;
+    height: auto;
+    margin-bottom: 20px;
+
+    .win,
+    .date {
+      width: 100%;
+      height: 20px;
+      display: block;
+      text-align: center;
+    }
 
     &.false {
-      background-color: red;
-      color: white;
+      .win {
+        background-color: red;
+      }
     }
 
     &.true {
-      background-color: green;
-      color: white;
+      .win {
+        background-color: green;
+      }
+    }
+
+    .stats {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .date {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
     }
   }
 }

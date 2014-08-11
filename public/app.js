@@ -71,6 +71,15 @@ controllers.playerController = function playerController( $scope, $route, $http 
       console.log('Error: ' + data);
     });
 
+  // isotope
+  var $isoContainer = $('.isotope');
+  // init
+  $isoContainer.isotope({
+    // options
+    itemSelector: '.game',
+    layoutMode: 'masonry'
+  });
+
 };
 
 user.controller(controllers);

@@ -46,4 +46,14 @@ app.get('/api/users/:user_id', function(req, res) {
 
 });
 
-// getGames(); // Run get games and update user game data.
+getGames(); // Run get games and update user game data.  
+
+// Timeout to call lol api
+var minutes = 15, the_interval = minutes * 60 * 1000;
+setInterval(function() {
+
+  console.log('Retrieving data from LOL api. This will repeat every ' + minutes + 'min.');
+  
+  getGames(); // Run get games and update user game data.  
+
+}, the_interval);
