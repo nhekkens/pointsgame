@@ -52,7 +52,6 @@ app.get('*', function (req, res) {
 	// res.render('index');
 	res.sendfile( __dirname + '/public/index.html');
 });
-ec2
 
 // getGames(); // Run get games and update user game data.
 
