@@ -1,22 +1,35 @@
 div#user .game {
-  height: auto;
+  height: 180px;
   margin-bottom: 20px; }
-  div#user .game .win,
-  div#user .game .date {
-    width: 100%;
-    height: 20px;
-    display: block;
-    text-align: center; }
-  div#user .game.false .win {
+  div#user .game.false .stats {
     background-color: red; }
-  div#user .game.true .win {
+  div#user .game.true .stats {
     background-color: green; }
+  div#user .game .champion {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-block; }
   div#user .game .stats {
     border: 1px solid black;
-    text-align: center; }
-  div#user .game .date {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black; }
-  div#user .game .points {
-    font-size: 22px; }
+    height: 100%;
+    overflow: hidden;
+    position: relative; }
+  div#user .game .kda {
+    font-size: 18px;
+    position: absolute;
+    top: 20px;
+    left: 140px;
+    color: white; }
+  div#user .game .mgs {
+    font-size: 18px;
+    position: absolute;
+    top: 20px;
+    left: 200px;
+    color: white; }
+  div#user .game .point {
+    font-size: 24px;
+    position: absolute;
+    top: 140px;
+    left: 10px;
+    color: white; }

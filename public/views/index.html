@@ -6,6 +6,11 @@ Filter:<input type="text" ng-model="filter.name"/>
 <button class="btn" onclick="refreshData()">Retrieve new data.</button>
 <br />
 
+
+
+
+
+
 <ul>
   <li ng-repeat="user in users | filter:filter.name"><a href="/{{ user.user_id }}">{{ user.user_name }}</a></li>
 </ul>

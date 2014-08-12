@@ -7,35 +7,64 @@
 
       <a href="/">Back</a>
       <h1>Stats for {{name}}</h1>
-      <h2>ARAM</h2>
+
+      <h2>Filter</h2>
+      <div id="filters" class="button-group">
+        <button class="btn btn-default" data-filter="*">show all</button>
+        <button class="btn btn-default" data-filter=".true">Win</button>
+        <button class="btn btn-default" data-filter=".false">Loss</button>
+        <button class="btn btn-default" data-filter=".mode-ARAM">Aram</button>
+        <button class="btn btn-default" data-filter=".mode-CLASSIC">Summoners</button>
+        <button class="btn btn-default" data-filter=".mode-ODIN">Dominion</button>
+      </div>
+
+      <h2>Sort</h2>
+
+      <div id="sorts" class="button-group">
+        <button class="btn btn-default" data-sort-by="minionkills">Minion Kills</button>
+        <button class="btn btn-default" data-sort-by="gold">Gold</button>
+        <button class="btn btn-default" data-sort-by="kills">Kills</button>
+        <button class="btn btn-default" data-sort-by="deaths">Deaths</button>
+        <button class="btn btn-default" data-sort-by="assits">Assits</button>
+        <button class="btn btn-default" data-sort-by="points">Points</button>
+        <button class="btn btn-default" data-sort-by="spree">Spree</button>
+      </div>
 
     </div>
 
   </div>
 
+  <br>
 
-  <div class="isotope">
+  <div class="isotope row">
 
-      <div class="game {{ game.win }} champ-id-{{ game.champion }} col-md-4 col-sm-3 col-xs-12" ng-repeat="game in games | orderBy: '-game_date'">
-
-        <div class="win"></div>
+      <div class="game {{ game.win }} champ-id-{{ game.champion }} mode-{{ game.game_mode }} col-md-4 col-sm-3 col-xs-12" ng-repeat="game in games | orderBy: '-game_date'">
 
         <div class="stats">
 
-          <p>Minion Kills: {{ game.minions }}</p>
-          <p>Total Gold: {{ game.gold }}</p>
-          <p>Kills: {{ game.kills }}</p>
-          <p>Deaths: {{ game.deaths }}</p>
-          <p>Assists: {{ game.assists }}</p>
-          <p class="points">Points: {{ game.points }}</p>
-          <p>Highest Spree: {{ game.spree }}</p>
-          <p>Game Mode: {{ game.game_mode }}</p>
-          <p>Game ID: {{ game.game_id }}</p>
-          <p>Champion: <img src="http://lkimg.zamimg.com/shared/riot/images/champions/{{ game.champion }}.png"></p>
+          <img class="champion" src="http://lkimg.zamimg.com/shared/riot/images/champions/{{ game.champion }}.png">
+
+          <div class="kda">
+            <p>K: <span class="kills">{{ game.kills }}</span></p>
+            <p>D: <span class="deaths">{{ game.deaths }}</span></p>
+            <p>A: <span class="assits">{{ game.assists }}</span></p>
+          </div>
+
+
+          <div class="mgs">
+            <p>M: <span class="minion-kills">{{ game.minions }}</span></p>
+            <p>G: <span class="gold">{{ game.gold }}</span></p>
+            <p>Spree: <span class="spree">{{ game.spree }}</span></p>
+          </div>
+
+          <div class="point">
+            <p>Points: <span class="points">{{ game.points }}</span></p>
+            <p class="hidden">Game ID: <span class="game-id">{{ game.game_id }}</span></p>
+          </div>
 
         </div>
 
-        <div class="date"><span>{{ game.game_date | date:'yyyy-MM-dd HH:mm:ss' }}</span></div>
+        <div class="date hidden"><span>{{ game.game_date | date:'yyyy-MM-dd HH:mm:ss' }}</span></div>
 
       </div>
 

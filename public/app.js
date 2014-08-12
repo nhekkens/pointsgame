@@ -1,8 +1,8 @@
 // Create Module
-var user = angular.module( 'user', [ 'ngRoute', 'restangular' ] );
+var user = angular.module( 'user', [ 'ngRoute' ] );
 
 // Config route
-user.config( function ($routeProvider, $locationProvider, RestangularProvider) {
+user.config( function ($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
@@ -11,16 +11,6 @@ user.config( function ($routeProvider, $locationProvider, RestangularProvider) {
       {
         controller: 'listController',
         templateUrl: 'views/index.html'
-      })
-    .when('/login',
-      {
-        controller: 'loginController',
-        templateUrl: 'views/login.html'
-      })
-    .when('/league',
-      {
-        controller: 'leagueController',
-        templateUrl: 'views/league.html'
       })
     .when('/:playerId',
       {
@@ -36,6 +26,8 @@ user.config( function ($routeProvider, $locationProvider, RestangularProvider) {
 var controllers = {};
 
 controllers.listController = function listController( $scope, $http ) {
+
+  console.log('List Controller');
 
   // when landing on the page, get all Users and show them
 	$http.get('/api/users')
@@ -59,14 +51,9 @@ controllers.listController = function listController( $scope, $http ) {
   }
 };
 
-controllers.loginController = function leagueController( $scope ) {
-
-  $scope.players = players;
-
-};
-
-
 controllers.playerController = function playerController( $scope, $route, $http ) {
+
+  console.log('Player Controller');
 
   var userId = $route.current.params.playerId;
   console.log(userId);
@@ -77,19 +64,47 @@ controllers.playerController = function playerController( $scope, $route, $http 
       $scope.games = data[0].games;
       $scope.name = data[0].user_name;
       console.log(data[0].games);
+
+      // ISOTOPE
+      setTimeout(function(){
+
+        var $isoContainer = $('.isotope');
+        // init
+        $isoContainer.isotope({
+          // options
+          itemSelector: '.game',
+          layoutMode: 'masonry',
+          sortAscending: false,
+
+          getSortData: {
+            minionkills: '.minion-kills parseInt',
+            gold: '.gold parseInt',
+            kills: '.kills parseInt',
+            deaths: '.deaths parseInt',
+            assits: '.assits parseInt',
+            points: '.points parseInt',
+            spree: '.spree parseInt'
+          }
+
+        });
+
+        $('#filters').on( 'click', 'button', function() {
+          var filterValue = $(this).attr('data-filter');
+          $isoContainer.isotope({ filter: filterValue });
+        });
+
+        $('#sorts').on( 'click', 'button', function() {
+          var sortByValue = $(this).attr('data-sort-by');
+          $isoContainer.isotope({ sortBy: sortByValue });
+        });
+
+      }, 500);
+
     })
     .error(function(data) {
       console.log('Error: ' + data);
     });
 
-  // isotope
-  var $isoContainer = $('.isotope');
-  // init
-  $isoContainer.isotope({
-    // options
-    itemSelector: '.game',
-    layoutMode: 'masonry'
-  });
 
 };
 
