@@ -46,6 +46,17 @@ controllers.listController = function listController( $scope, $http ) {
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});
+
+  // get new data with ajax req
+  refreshData = function() {
+    console.log('Retrieving new data.');
+    $.ajax({
+      url: "/refreshData"
+    }).done(function() {
+      console.log('Done')
+      $( this ).addClass( "done" );
+    });
+  }
 };
 
 controllers.loginController = function leagueController( $scope ) {

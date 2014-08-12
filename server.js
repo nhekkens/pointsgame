@@ -8,7 +8,7 @@ var User     = require("./modules/user");
 var getGames     = require("./modules/getGames");
 
 app.configure(function() {
-	app.use(express.static(__dirname + '/public')); 		
+	app.use(express.static(__dirname + '/public'));
 	app.use(express.logger('dev')); 						// log every request to the console
 	app.use(express.bodyParser()); 							// pull information from html in POST
   // app.engine('html', require('ejs').renderFile);
@@ -47,16 +47,20 @@ app.get('/api/users/:user_id', function(req, res) {
 
 });
 
+// GET new data
+app.get('/refreshData', function(req, res) {
+
+	getGames();
+});
+
 // Redirect everything other than above to index (angualr knows the route)
 app.get('*', function (req, res) {
 	// res.render('index');
 	res.sendfile( __dirname + '/public/index.html');
 });
 
-// getGames(); // Run get games and update user game data.
-
 // Timeout to call lol api
-var minutes = 15, the_interval = minutes * 60 * 1000;
+var minutes = 60, the_interval = minutes * 60 * 1000;
 setInterval(function() {
 
   console.log('Retrieving data from LOL api. This will repeat every ' + minutes + 'min.');

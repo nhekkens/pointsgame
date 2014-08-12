@@ -112,7 +112,6 @@ var getGames = function() {
 
   }
 
-
   // (6) add game to User
   function addGame( user_id, newPlayerGame ) {
 
