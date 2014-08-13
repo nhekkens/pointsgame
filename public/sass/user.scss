@@ -1,61 +1,69 @@
 div#user {
 
-
-.game {
-  height: 180px;
-  margin-bottom: 20px;
-
-
-  &.false {
-    .stats {
-      background-color: red;
-    }
-  }
-
-  &.true {
-    .stats {
-      background-color: green;
-    }
-  }
-
-  .champion {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+.playerStats {
+  h1 {
     display: inline-block;
 
+    &.totalPoints {
+      float: right;
+    }
   }
-
-  .stats {
-    border: 1px solid black;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .kda {
-    font-size: 18px;
-    position: absolute;
-    top: 20px;
-    left: 140px;
-    color: white;
-  }
-
-  .mgs {
-    font-size: 18px;
-    position: absolute;
-    top: 20px;
-    left: 200px;
-    color: white;
-  }
-
-  .point {
-    font-size: 24px;
-    position: absolute;
-    top: 140px;
-    left: 10px;
-    color: white;
-  }
-
 }
+
+  .game {
+    height: 180px;
+    margin-bottom: 20px;
+
+
+    &.false {
+      .stats {
+        background-color: red;
+      }
+    }
+
+    &.true {
+      .stats {
+        background-color: green;
+      }
+    }
+
+    .champion {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: inline-block;
+
+    }
+
+    .stats {
+      border: 1px solid black;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .kda {
+      font-size: 18px;
+      position: absolute;
+      top: 20px;
+      left: 140px;
+      color: white;
+    }
+
+    .mgs {
+      font-size: 18px;
+      position: absolute;
+      top: 20px;
+      left: 200px;
+      color: white;
+    }
+
+    .point {
+      font-size: 24px;
+      position: absolute;
+      top: 140px;
+      left: 10px;
+      color: white;
+    }
+  }
 }

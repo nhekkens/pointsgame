@@ -1,3 +1,7 @@
+div#user .playerStats h1 {
+  display: inline-block; }
+  div#user .playerStats h1.totalPoints {
+    float: right; }
 div#user .game {
   height: 180px;
   margin-bottom: 20px; }

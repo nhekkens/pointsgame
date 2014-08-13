@@ -11,6 +11,9 @@ Filter:<input type="text" ng-model="filter.name"/>
 
 
 
-<ul>
-  <li ng-repeat="user in users | filter:filter.name"><a href="/{{ user.user_id }}">{{ user.user_name }}</a></li>
-</ul>
+  <a class="user-{{ user.user_name }} user" href="/{{ user.user_id }}" ng-repeat="user in users | filter:filter.name"  repeat-complete-directive>
+    <div class="img"></div>
+    <div class="name">
+      <span>{{ user.user_name }}</span>
+    </div>
+  </a>

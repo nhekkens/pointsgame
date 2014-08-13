@@ -6,7 +6,11 @@
     <div class="col-md-12">
 
       <a href="/">Back</a>
-      <h1>Stats for {{name}}</h1>
+
+      <div class="playerStats">
+        <h1>Stats for {{name}}</h1>
+        <h1 class="totalPoints">Total Points: <span></span></h1>
+      </div>
 
       <h2>Filter</h2>
       <div id="filters" class="button-group">
@@ -38,7 +42,7 @@
 
   <div class="isotope row">
 
-      <div class="game {{ game.win }} champ-id-{{ game.champion }} mode-{{ game.game_mode }} col-md-4 col-sm-3 col-xs-12" ng-repeat="game in games | orderBy: '-game_date'">
+      <div class="game {{ game.win }} champ-id-{{ game.champion }} mode-{{ game.game_mode }} col-md-4 col-sm-3 col-xs-12" ng-repeat="game in games | orderBy: '-game_date'" repeat-complete-directive>
 
         <div class="stats">
 
