@@ -107,9 +107,12 @@ controllers.playerController = function playerController( $scope, $route, $http 
           var sortByValue = $(this).attr('data-sort-by');
           $isoContainer.isotope({ sortBy: sortByValue });
         });
-      }, 500);
-      // ISOTOPE stop
+        // ISOTOPE stop
 
+        // get current time and minus the game timestamp.
+        howLongAgo();
+
+      }, 500);
     })
     .error(function(data) {
       console.log('Error: ' + data);
@@ -120,18 +123,62 @@ controllers.playerController = function playerController( $scope, $route, $http 
 
     // add up all points and output
     calcPlayerPoints();
+
   });
 
   function calcPlayerPoints() {
     var totalPoints = 0;
 
     angular.forEach($scope.games,function(value,index){
-      if(typeof value.points != 'undefined')
-      console.log(value.points);
-      totalPoints =+ value.points;
+      if(typeof value.points != 'undefined') {
+        console.log('This value is not undefined: ' + value.points);
+        totalPoints =+ value.points;
+      } else {
+        console.log('This value is undefined: ' + value.points + 'turning it to 0.');
+        totalPoints =+ 0;
+      }
     })
 
     $('.totalPoints span').html(totalPoints);
+  }
+
+  function howLongAgo() {
+    angular.forEach($scope.games,function(value,index){
+
+      longAgo = timeSince( value.game_date );
+
+      console.log('Time since ' + value.game_id + ' was ' + longAgo);
+
+      $('.' + value.game_id).html(longAgo + ' ago.');
+    })
+  }
+
+  function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+        return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+        return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
   }
 };
 

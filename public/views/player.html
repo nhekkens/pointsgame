@@ -63,7 +63,12 @@
 
           <div class="point">
             <p>Points: <span class="points">{{ game.points }}</span></p>
+            <p class=""><span class="time-since {{ game.game_id }}"></span></p>
             <p class="hidden">Game ID: <span class="game-id">{{ game.game_id }}</span></p>
+          </div>
+
+          <div class="time-ago">
+            <span class="{{ game.game_id }}"></span>
           </div>
 
         </div>
