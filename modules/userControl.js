@@ -50,6 +50,29 @@ var Cortex = {
   games : []
 };
 
+var BarbarianBeefHQ = {
+  user_id          :  30170513,
+  user_name        :  'BarbarianBeefHQ',
+  games : []
+};
+
+var BarbarianDuitsHQ = {
+  user_id          :  29206175,
+  user_name        :  'BarbarianDuitsHQ',
+  games : []
+};
+
+var sioux51 = {
+  user_id          :  27885241,
+  user_name        :  'sioux51',
+  games : []
+};
+
+
+
+
+
+
 // Remove user =================================================================
 // User.remove({ user_id: 28040465 }, function (err) {
 //   console.log('Slapy Removed.');
@@ -74,6 +97,15 @@ var Cortex = {
 // }); //Terrance
 // User.remove({ user_id: 28375567 }, function (err) {
 //   console.log('Terrance Removed.');
+// }); //Cortex
+// // User.remove({ user_id: 30170513 }, function (err) {
+//   console.log('BarbarianBeefHQ Removed.');
+// }); //Cortex
+// // User.remove({ user_id: 29206175 }, function (err) {
+//   console.log('BarbarianDuitsHQ Removed.');
+// }); //Cortex
+// // User.remove({ user_id: 27885241 }, function (err) {
+//   console.log('sioux51 Removed.');
 // }); //Cortex
 
 // Create user =================================================================
@@ -101,7 +133,15 @@ var Cortex = {
 // User.create(Cortex, function(err, User) {
 //     console.log('Cortex Created');
 // });
-
+User.create(BarbarianBeefHQ, function(err, User) {
+    console.log('BarbarianBeefHQ Created');
+});
+User.create(BarbarianDuitsHQ, function(err, User) {
+    console.log('BarbarianDuitsHQ Created');
+});
+User.create(sioux51, function(err, User) {
+    console.log('sioux51 Created');
+});
 
 // Output the users=============================================================
 // User.find(function(err, User) {
